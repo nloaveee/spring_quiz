@@ -39,5 +39,29 @@
 		WHERE
 			`rentPrice` &lt; #{rentPrice}
  	</select>
+ 	
+ 	<!-- 3강 quiz01-3 -->
+ 	<select id="selectRealEstateByAreaAndPrice" resultType="com.quiz.lesson03.domain.RealEstate">
+ 		SELECT 
+ 			`id`
+			,`realtorId`
+			,`address`
+			,`area`
+			,`type`
+			,`price`
+			,`rentPrice`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`real_estate`
+		WHERE
+			`area` &gt; #{param1}
+		AND
+			`price` &lt; #{param2} 	
+		ORDER BY 
+			`createdAt` 
+		DESC
+		
+ 	</select>
  
  </mapper>

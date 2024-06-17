@@ -28,7 +28,7 @@ public class RealEstateBO {
 
 	// input: area, price
 	// output: estate
-//	public List<RealEstate> getERealstateByAreaAndPrice(int area, int price) {
-//
-//	}
+	public List<RealEstate> getERealstateByAreaAndPrice(int area, int price) {
+		return estateMapper.selectRealEstateByAreaAndPrice(area, price);
+	}
 }
