@@ -27,8 +27,21 @@ public class RealEstateBO {
 	}
 
 	// input: area, price
-	// output: estate
-	public List<RealEstate> getERealstateByAreaAndPrice(int area, int price) {
+	// output: List<RealEstate>
+	public List<RealEstate> getERealEstateByAreaAndPrice(int area, int price) {
 		return estateMapper.selectRealEstateByAreaAndPrice(area, price);
+	}
+
+	// quiz02_1
+	// input: RealEstate
+	// output: 성공한 행의 개수(int)
+	public int addRealEstate(RealEstate realEstate) {
+		return estateMapper.insertRealEstate(realEstate);
+	}
+
+	// quiz02_2
+	public int addRealEstateAsField(int realtorId, String address, int area, String type, int price,
+			Integer rentPrice) {
+		return estateMapper.insertRealEstateAsField(realtorId, address, area, type, price, rentPrice);
 	}
 }
