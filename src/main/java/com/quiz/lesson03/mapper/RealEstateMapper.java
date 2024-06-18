@@ -25,4 +25,10 @@ public interface RealEstateMapper {
 	public int insertRealEstateAsField(@Param("realtorId") int realtorId, @Param("address") String address,
 			@Param("area") int area, @Param("type") String type, @Param("price") int price,
 			@Param("rentPrice") Integer rentPrice);
+
+	// quiz03_1
+	public int updateRealEstateById(@Param("id") int id, @Param("type") String type, @Param("price") int price);
+
+	// quiz04
+	public void deleteEstateById(int id);
 }
