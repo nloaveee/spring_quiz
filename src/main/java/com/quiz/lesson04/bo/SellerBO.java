@@ -24,4 +24,10 @@ public class SellerBO {
 		return sellerMapper.selectLatestSeller();
 	}
 
+	// iuput: x
+	// output: Seller(채워져 있거나 null)
+	public Seller getSellerById(int id) {
+		return sellerMapper.selectSellerById(id);
+	}
+
 }
