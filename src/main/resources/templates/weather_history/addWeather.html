@@ -7,12 +7,103 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="/css/addWeather.css">
+    
 </head>
 <body>
-
-		<!-- static은 무시하고, img는 무조건 /로 시작, css도 무조건 /로 시작 이미지 확장자까지 써주기-->
-		<!--  -->
-		<img src="/img/sunny.jpg">
+	<div id="wrap">
+		
+		<!-- main -->
+		<section class="contents d-flex">
+			<!-- 왼쪽 메뉴 -->
+			<section class="right bg-primary col-2" >
+				<!-- 로고 -->
+				<div class="logo-box d-flex align-items-center justify-content-center mt-2">
+					<img src="/img/기상청로고.svg" class="logo">
+				</div> 
+				
+				 <!-- 메뉴 영역 -->
+                <nav>
+                    <!-- 수직(세로)방향 메뉴: nav + flex-column -->
+                    <ul class="nav flex-column font-weight-bold">
+                        <li class="nav-item"><a href="#" class="nav-link">날씨</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">날씨입력</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">테마날씨</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">관측 기후</a></li>
+                    </ul>
+                </nav>
+			
+			</section>
+			
+			<!-- 오른쪽 날짜 list -->
+			<section class="left col-10 ml-5">
+				<h3 class="mt-3">날씨 입력</h3>
+				
+				<form method="post" action="/weather-history/weather-list-view">
+					<div class="ml-5 mt-5 w-75">
+					<!-- 위 -->
+					<div class="d-flex w-100">
+						<div class="d-flex">
+						<label for="date">날짜</label>
+						<input type="text" name="date" class="form-control ">
+						</div>
+						
+						<div class="d-flex">
+						<label for="weather">날씨</label>
+						<select id="WeatherSelect" class="form-control">
+							<option selected>맑음</option>
+							<option>구름조금</option>
+							<option>흐림</option>
+							<option>비</option>						
+						</select>
+						</div>
+						
+						<div class="d-flex">
+						<label for="fineDust">미세먼지</label>
+						<select id="fineDustSelect" class="form-control">
+							<option>보통</option>
+							<option selected>좋음</option>
+							<option>나쁨</option>
+							<option>최악</option>						
+						</select>
+						</div>
+					</div>
+					
+					<!-- 아래 -->
+					<div class="d-flex mt-3">
+						<div class="d-flex">
+							<label for="temperatures">기온</label>
+							<input type="text" name="temperatures" class="form-control">
+							 <span class="unit">°C</span>
+						</div>
+						<div class="d-flex">
+							<label for="precipitation">강수량</label>
+							<input type="text" name="precipitation" class="form-control">
+							<span class="unit">mm</span>
+						</div>
+						<div class="d-flex">
+							<label for="windSpeed">풍속</label>
+							<input type="text" name="windSpeed" class="form-control">
+							<span class="unit">km/h</span>
+						</div>
+					</div>
+						<div class="d-flex justify-content-end">
+							<button type="submit" class="btn btn-success">저장</button>
+						</div>
+					</div>
+				</form>
+			</section>
+		</section>
+		
+		<!-- footer -->
+		<footer class="d-flex align-items-center">
+			<img src="/img/기상청흑백로고.png" class="footer-logo mx-4">
+			<small class="text-secondary">(07062) 서울시 동작구 여의대방로 16길 61<br>Copyright@2024 KMA. All Rights RESERVED</small>
+		</footer>
+		
+	</div>
+	
 
 </body>
 </html>

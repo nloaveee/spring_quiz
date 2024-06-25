@@ -7,8 +7,62 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="/css/weatherList.css">
+
 </head>
 <body>
+
+	<div id="wrap">
+		
+		<!-- main -->
+		<section class="contents d-flex">
+			<!-- 왼쪽 메뉴 -->
+			<section class="right bg-primary col-2" >
+				<!-- 로고 -->
+				<div class="logo-box d-flex align-items-center justify-content-center mt-2">
+					<img src="/img/기상청로고.svg" class="logo">
+				</div> 
+				
+				 <!-- 메뉴 영역 -->
+                <nav>
+                    <!-- 수직(세로)방향 메뉴: nav + flex-column -->
+                    <ul class="nav flex-column font-weight-bold">
+                        <li class="nav-item"><a href="#" class="nav-link">날씨</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">날씨입력</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">테마날씨</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">관측 기후</a></li>
+                    </ul>
+                </nav>
+			
+			</section>
+			
+			<!-- 오른쪽 날짜 list -->
+			<section class="left col-10">
+				<h3 class="ml-5 mt-3">과거 날씨</h3>
+				<table class="table text-center col-10 mx-5">
+					<thead>
+						<tr>
+							<th>날짜</th>
+							<th>날씨</th>
+							<th>기온</th>
+							<th>강수량</th>
+							<th>미세먼지</th>
+							<th>풍속</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</section>
+		</section>
+		
+		<!-- footer -->
+		<footer class="d-flex align-items-center">
+			<img src="/img/기상청흑백로고.png" class="footer-logo mx-4">
+			<small class="text-secondary">(07062) 서울시 동작구 여의대방로 16길 61<br>Copyright@2024 KMA. All Rights RESERVED</small>
+		</footer>
+		
+	</div>
 
 </body>
 </html>

@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+    .content {
+    min-height: 600px
+    }
+    
+    .logo-box {
+    height:50px
+    }
+    
+    .logo {
+    height:30px
+    }
+    
+    .right {
+    min-height: 600px
+    }
+    
+    .left {
+    min-height: 600px
+    }
+    
+    .nav-link {
+    color: #fff;
+    }
+    
+    
+    footer {
+    height: 100px
+    }
+    
+    .footer-logo {
+    height: 50px
+    }
+    
+    
