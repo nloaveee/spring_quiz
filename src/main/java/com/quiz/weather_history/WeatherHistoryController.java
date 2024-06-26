@@ -37,17 +37,17 @@ public class WeatherHistoryController {
 	// 날씨 추가 화면
 	// http://localhost:8080/weather-history/add-weather-view
 	@GetMapping("/add-weather-view")
-	public String addWeatherView(@ModelAttribute WeatherHistory weatherHistory, Model model) {
+	public String addWeatherView() {
 
-		weatherHistoryBO.addWeather(weatherHistory);
-
-		return "weather-history/addWeather";
+		return "weather_history/addWeather";
 	}
 
 	// 날씨 추가 기능
 	// weather-history/add-weather
 	@PostMapping("/add-weather")
-	public String addWeather() {
+	public String addWeather(@ModelAttribute WeatherHistory weatherHistory, Model model) {
+
+		weatherHistoryBO.addWeather(weatherHistory);
 
 		return "redirect:/weather-history/weather-list-view";
 	}
