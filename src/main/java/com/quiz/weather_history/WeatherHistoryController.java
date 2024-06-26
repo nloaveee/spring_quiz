@@ -45,10 +45,29 @@ public class WeatherHistoryController {
 	// 날씨 추가 기능
 	// weather-history/add-weather
 	@PostMapping("/add-weather")
-	public String addWeather(@ModelAttribute WeatherHistory weatherHistory, Model model) {
+	public String addWeather(
+			// Date로 들어오는 경우 @DateTimeFormat(pattern = "yyyy-MM-dd")를 사용
+			// weatherHistory 객체로 가져오는 경우 domain에서 파라미터 위에 작성 @DateTimeFormat(pattern =
+			// "yyyy-MM-dd")
+			/*
+			 * @RequestParam("date") LocalDate date,
+			 * 
+			 * @RequestParam("weather") String weather, @RequestParam("microDust") String
+			 * microDust,
+			 * 
+			 * @RequestParam("temperatures") double
+			 * temperatures, @RequestParam("precipitation") double precipitation,
+			 * 
+			 * @RequestParam("windSpeed") double windSpeed, Model model
+			 */
 
+			@ModelAttribute WeatherHistory weatherHistory, Model model) {
+
+		// db insert
 		weatherHistoryBO.addWeather(weatherHistory);
 
+		// 웹에서는 메소드 호출이 불가능 해서 redirect를 해줘야 한다.
+		// redirect => 날씨 목록
 		return "redirect:/weather-history/weather-list-view";
 	}
 

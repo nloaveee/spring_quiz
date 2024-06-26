@@ -18,11 +18,10 @@
 			`weather_history` 		
  	</select>
  	
- 	<insert id="insertWeather" parameterType="com.quiz.weather_history.domain.WeatherHistory"
- 	useGeneratedKeys="true" keyProperty="id">
+ 	<insert id="insertWeather" parameterType="map">
  		INSERT INTO `weather_history`
  		(	
- 			`date`
+			`date`
 			,`weather`
 			,`temperatures`
 			,`precipitation`
@@ -40,11 +39,8 @@
  			, #{microDust}
  			, #{windSpeed}
  			, NOW()
- 			, NOW()
- 			
- 		)
- 	
- 	
+ 			, NOW() 			
+ 		) 	
  	</insert>
  
  </mapper>

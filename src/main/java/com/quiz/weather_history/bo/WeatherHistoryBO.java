@@ -21,7 +21,7 @@ public class WeatherHistoryBO {
 	}
 
 	public void addWeather(WeatherHistory weatherHistory) {
-
+		weatherHistoryMapper.insertWeather(weatherHistory);
 	}
 
 }
