@@ -1,6 +1,8 @@
 package com.quiz.lesson06;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,20 @@ public class Lesson06Controller {
 	@Autowired
 	private BookmarkBO bookmarkBO;
 
+	// 즐겨 찾기 목록 화면 (결과)
+	// http://localhost:8080/lesson06/list-bookmark-view
+	@GetMapping("/list-bookmark-view")
+	public String listBookmarkView(@ModelAttribute Bookmark bookmark, Model model) {
+
+		// db select => List<Bookmark>
+		List<Bookmark> bookmarkList = bookmarkBO.getBookmarkList();
+
+		// model에 담기
+		model.addAttribute("bookmarkList", bookmarkList);
+
+		return "lesson06/listBookmark";
+	}
+
 	// 즐겨 찾기 추가 화면
 	// http://localhost:8080/lesson06/add-bookmark-view
 	@GetMapping("/add-bookmark-view")
@@ -28,26 +44,27 @@ public class Lesson06Controller {
 		return "lesson06/addBookmark";
 	}
 
-	// AJAX가 요청하는 요청
+	// AJAX가 하는 요청
+	// 즐겨찾기 추가 로직
 	@ResponseBody
 	@PostMapping("/add-bookmark")
-	public String addBookmark(@ModelAttribute Bookmark bookmark) {
+	public Map<String, Object> addBookmark(@ModelAttribute Bookmark bookmark) {
 
+		// db insert
 		bookmarkBO.addBookmark(bookmark);
 
-		return "성공";
+		// 성공 JSON
+		// {"code":200, "result": "성공"}
+		Map<String, Object> result = new HashMap<>();
+		result.put("code", 200);
+		result.put("result", "성공");
+
+		return result;
 	}
 
-	// 결과 화면 (즐겨 찾기 목록)
-	// http://localhost:8080/lesson06/list-bookmark-view
-	@GetMapping("/list-bookmark-view")
-	public String listBookmarkView(@ModelAttribute Bookmark bookmark, Model model) {
-
-		List<Bookmark> bookmarkList = bookmarkBO.getBookmarkList();
-
-		model.addAttribute("bookmarkList", bookmarkList);
-
-		return "lesson06/listBookmark";
-	}
+	// 삭제는 a 태그를 사용하지 말고 button으로 사용
+	// btn을 누르면 script에 id를 가져와서 삭제 하고 나서 페이지 새로고침
+	// btn 이름은 class로 해야된다. (id x)
+	// 삭제 api를 만든다음 번호를 파라미터로 받아와서 삭제 되는지 확인하고 ajax랑 연동
 
 }

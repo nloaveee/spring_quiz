@@ -21,13 +21,13 @@
 		
 		<!-- 가게 list -->
 		<section>
-			<div class="box border rounded border-info w-100 mt-3 d-flex align-items-center">
+			<div th:each="review : ${reviewList}" class="box border rounded border-info w-100 mt-3 d-flex align-items-center">
 				<div class="ml-3">
-					<span>이름</span>
-					<span>별점</span>
-					<div>날짜</div>
-					<div>리뷰</div>
-					<div>메뉴</div>			
+					<span th:text="${review.name}">이름</span>
+					<span th:text="${review.name}">별점</span>
+					<div th:text="${review.name}" >날짜</div>
+					<div th:text="${review.name}">리뷰</div>
+					<div th:text="${review.name}">메뉴</div>			
 				</div>
 			</div>
 		</section>

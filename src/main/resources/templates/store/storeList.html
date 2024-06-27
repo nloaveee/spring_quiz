@@ -30,9 +30,7 @@
 			<div class="display-4 my-3" th:text="'우리동네 가게'"></div>
 			<!-- 가게 영역 -->
 			<div class="store mb-3" th:each="store : ${storeList}">
-				<!-- a 태그 href 링크 3가지 방법 -->
-				<!-- <a th:href="${/store-review/review-view(storeId=${store.id}, storeName=${store.name})}"> -->
-				<!-- <a th:href="@{|/store-review/review-view?storeId=${store.id}&storeName=${store.name}|}"> -->
+				<!-- a 태그 href 링크 받기 -->
 				<a th:href="@{'/store-review/review-view?storeId=' + ${store.id} + '&storeName=' + ${store.name}}">
 					<div class="store-box border border-info rounded p-3">
 						<h3 class="font-weight-bold mb-3" th:text="${store.name}"></h3>
