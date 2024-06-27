@@ -39,8 +39,24 @@
 				}
 				
 				$.ajax ({
+					
+					// request
 					type:"POST"
 					, url:"/lesson06/add-bookmark"
+					, data:{"name":name, "url": url}
+				
+				
+					//response
+					// callback 함수 
+					// 응답값은 항사 String이다 
+					, success:function(data) {
+						if (data=="성공") {
+							location.href= "/lesson06/list-bookmark-view";
+						}
+					}
+					, error:function(error) {
+						alert(error);
+					}
 					
 					
 				})

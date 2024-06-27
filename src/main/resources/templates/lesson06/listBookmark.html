@@ -21,10 +21,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
+				<tr th:each="bookmark, status : ${bookmarkList}">
+					<td th:text="${status.count}"></td>
+					<td th:text="${bookmark.name}">이름</td>
+					<td th:text="${bookmark.url}">주소</td>
 				</tr>
 			</tbody>
 		</table>

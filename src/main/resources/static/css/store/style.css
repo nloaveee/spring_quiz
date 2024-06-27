@@ -8,13 +8,12 @@
      height: 100px;
      color: white;
     }
-    
-    .box{
-		height:120px;
-		display: inline-block;
-	}
 	
 	.name {
 		font-size:25px
 	}
+	
+	.store-box:hover {background-color:#E6FAFD;}
     
+    a {text-decoration:none; color:#000;}
+	a:hover {text-decoration:none; color:#000;}
