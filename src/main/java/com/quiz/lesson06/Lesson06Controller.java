@@ -7,10 +7,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.quiz.lesson06.bo.BookmarkBO;
@@ -62,9 +64,41 @@ public class Lesson06Controller {
 		return result;
 	}
 
-	// 삭제는 a 태그를 사용하지 말고 button으로 사용
-	// btn을 누르면 script에 id를 가져와서 삭제 하고 나서 페이지 새로고침
-	// btn 이름은 class로 해야된다. (id x)
-	// 삭제 api를 만든다음 번호를 파라미터로 받아와서 삭제 되는지 확인하고 ajax랑 연동
+	// AJAX 요청 - url 중복 확인
+	@ResponseBody
+	@PostMapping("is-duplication-url")
+	public Map<String, Object> isDuplicationUrl(@RequestParam("url") String url) {
+
+		// db select
+		boolean isDuplication = bookmarkBO.isDuplicationUrl(url);
+
+		// 응답 json
+		Map<String, Object> result = new HashMap<>();
+		result.put("code", 200);
+		result.put("is_duplication", isDuplication);
+
+		return result;
+	}
+
+	// http://localhost:8080/lesson06/delete-bookmark?id=3
+	// AJAX 요청 - id로 삭제
+	@ResponseBody
+	@DeleteMapping("/delete-bookmark")
+	public Map<String, Object> deleteBookmark(@RequestParam("id") int id) {
+
+		// db delete
+		int rowCount = bookmarkBO.deleteBookmarkById(id);
+
+		// 응답값 json
+		Map<String, Object> result = new HashMap<>();
+		if (rowCount > 0) {
+			result.put("code", 200);
+			result.put("result", "성공");
+		} else {
+			result.put("code", 500);
+			result.put("error_message", "삭제할 항목이 존재하지 않습니다.");
+		}
+		return result;
+	}
 
 }

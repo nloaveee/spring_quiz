@@ -12,4 +12,10 @@ public interface BookmarkMapper {
 	public List<Bookmark> selectBookmarkList();
 
 	public void insertBookmark(Bookmark bookmark);
+
+	// input: url
+	// output: List<Bookmark>
+	public List<Bookmark> selectBookmarkListByUrl(String url);
+
+	public int deleteBookmarkById(int id);
 }

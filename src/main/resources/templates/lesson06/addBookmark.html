@@ -21,10 +21,11 @@
 			<span>주소</span>
 				<div class="d-flex align-items-center">
 					<input type="text" id="url" class="form-control my-2 mr-3">
-					<button type="button" id="isDuplicationUrlBtn" class=" btn btn-info col-1">중복확인</button>
+					<button type="button" id="duplicationBtn" class="btn btn-info col-1">중복확인</button>
 				</div>
 				
-				<small id="urlspaceArea"></small>
+				<small id="duplicationText" class="text-danger d-none">중복된 URL 입니다.</small>
+				<small id="availableText" class="text-success d-none">저장 가능한 URL 입니다.</small>
 		</div>
 		<input type="button" value="추가" class="addBtn btn btn-success w-100 mt-3">	
 	</div>
@@ -34,9 +35,38 @@
 		// 검사 consol에서 error 확인
 		$(document).ready(function(){
 			
-			// 중복 버튼 
-			$("#isDuplicationUrlBtn").on('click', function(){
+			// 중복 확인
+			$("#duplicationBtn").on('click', function(){
+				let url=$("#url").val().trim();
+				if(!url) {
+					alert("주소를 입력하세요");
+					return;
+				}
 				
+				// AJAX - DB url 확인
+				$.ajax({
+					
+					//request
+					type:"POST"
+					, url:"/lesson06/is-duplication-url"
+					, data:{"url":url}
+					
+					//respose
+					, success:function(data) {
+						// {"code":200, "is_duplication":true} => 중복
+						if (data.is_duplication) { //중복
+							$("#duplicationText").removeClass("d-none");
+							$("#availableText").addClass("d-none");
+						} else { // 중복 아님 => 사용 가능
+							$("#duplicationText").addClass("d-none");
+							$("#availableText").removeClass("d-none");
+						}
+					}
+					
+					,error:function() {
+						alert("중복 확인에 실패했습니다");
+					}
+				});
 				
 			});
 			
