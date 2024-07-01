@@ -96,10 +96,11 @@ public class BookingController {
 	// AJAX 요청 - 예약 조회
 	@ResponseBody
 	@PostMapping("/check-booking")
-	public Map<String, Object> checkBooking(Booking booking) {
+	public Map<String, Object> checkBooking(@RequestParam("name") String name,
+			@RequestParam("phoneNumber") String phoneNumber) {
 
 		// db select
-		bookingBO.getBookingBynameAndPhoneNumber(booking);
+		Booking booking = bookingBO.getBookingBynameAndPhoneNumber(name, phoneNumber);
 
 		// 응답값 => json
 		Map<String, Object> result = new HashMap<>();

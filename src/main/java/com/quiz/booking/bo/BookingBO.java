@@ -33,7 +33,7 @@ public class BookingBO {
 
 	// input : name, phoneNumber
 	// output: Booking
-	public Booking getBookingBynameAndPhoneNumber(Booking booking) {
-		return bookingMapper.getBookingBynameAndPhoneNumber(booking);
+	public Booking getBookingBynameAndPhoneNumber(String name, String phoneNumber) {
+		return bookingMapper.getBookingBynameAndPhoneNumber(name, phoneNumber);
 	}
 }

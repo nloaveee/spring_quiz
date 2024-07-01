@@ -18,5 +18,5 @@ public interface BookingMapper {
 	public void insertBooking(@Param("name") String name, @Param("date") LocalDate date, @Param("day") int day,
 			@Param("headcount") int headcount, @Param("phoneNumber") String phoneNumber);
 
-	public Booking getBookingBynameAndPhoneNumber(Booking booking);
+	public Booking getBookingBynameAndPhoneNumber(@Param("name") String name, @Param("phoneNumber") String phoneNumber);
 }
