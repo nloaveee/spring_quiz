@@ -40,12 +40,21 @@
 	            <tbody>
 	            	<tr th:each="booking : ${bookingList}">
 	            		<td th:text="${booking.name}"></td>
-	            		<td th:text="${booking.date}"></td>
+	            		<td th:text="${#temporals.format(booking.date,'yyyy년 M월 d일')}"></td>
 	            		<td th:text="${booking.day}"></td>
 	            		<td th:text="${booking.headcount}"></td>
 	            		<td th:text="${booking.phoneNumber}"></td>
-	            		<td th:text="${booking.state}"></td>
-	            		<td>삭제</td>
+	            		<td th:switch="${booking.state}">
+	            			<!-- if문 사용 가능 
+	            			<span th:if="${booking.state} == '대기중'" class="text-info" th:text="${booking.state}"></span>
+	            			-->
+	            			<span th:case="대기중" th:text="${booking.state}" class="text-info"></span>
+	            			<span th:case="확정" th:text="${booking.state}" class="text-success"></span>	            		
+	            			<span th:case="최소" th:text="${booking.state}" class="text-danger"></span>	            		
+	            		</td>
+	            		<td>
+	            			<button type="button" class="del-btn btn btn-danger" th:data-booking-id="${booking.id}">삭제</button>
+	            		</td>
 	            	</tr>
 	            </tbody>
 			</table>
@@ -57,6 +66,44 @@
 	            Copyright 20XX tongnamu. All right reserved.
 	        </small>
 	    </footer>
-	</div>       
+	</div>
+	
+	<script>
+	
+		$(document).ready(function() {
+			
+			// 삭제 클릭
+			$(".del-btn").on('click',function() {
+				
+				// this라고 해야 내가 클릭한 하나만 가져오게 된다.
+				let id = $(this).data("booking-id");
+				
+				$.ajax({
+					// request
+					type:"delete"
+					, url:"/booking/delete-booking"
+					, data:{"id":id}
+				
+					// response
+					,success:function(data){
+						// {"code":200, "result":"성공"}
+						if (data.code == 200) {
+							alert("삭제되었습니다.");
+							location.reload(true);
+						}  else if (data.code == 500) {
+							// {"code":500, "error_message":"에러의 원인
+							alert(data.error_message);
+						}
+					}	
+					
+					, error:function(error) {
+						alert("삭제하는데 실패했습니다. 관리자에게 문의해주세요.");
+					}
+					
+				});
+			});			
+		});
+	
+	</script>       
 </body>
 </html>
