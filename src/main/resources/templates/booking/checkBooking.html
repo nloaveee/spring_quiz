@@ -112,16 +112,23 @@
 
 					//response
 					,
-					success : function(data) {
-						// {"code":200, "result":"성공"}
-						if (data.result == "성공"){
-							alert("성공");
+					success : function(data) {						
+						if (data.code == 500){
+							// 예약 없음
+							// {"code":500, "error_message":"예약 내역이 없습니다."}
+							alert(data.error_message);
+						} else if(data.code == 200){
+							// 성공
+							// {"code":200, "result":{"id":3, "name":"홍길동"...}}
+							alert("이름: "+data.result.name+"\n날짜: "+data.result.date+"\n일수: "+data.result.day
+									+"\n인원: "+data.result.headcount+"\n상태: "+data.result.state);
 						}
 					}
 
 					,
 					error : function(error) {
-						alert("예약 내역이 없습니다.");
+						
+						alert("조회하는데 실패했습니다.");
 					}
 
 				});

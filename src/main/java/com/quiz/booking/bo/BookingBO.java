@@ -32,8 +32,13 @@ public class BookingBO {
 	}
 
 	// input : name, phoneNumber
-	// output: Booking
-	public Booking getBookingBynameAndPhoneNumber(String name, String phoneNumber) {
-		return bookingMapper.getBookingBynameAndPhoneNumber(name, phoneNumber);
+	// output: Booking(최신) or null
+	public Booking getLatestBookingByNamePhoneNumber(String name, String phoneNumber) {
+		// 없을 때: [] (없을 때는 null이 아니다.)
+		// 있을 때: [booking1, booking2...]
+		List<Booking> bookingList = bookingMapper.selectBookingListByNamePhoneNumber(name, phoneNumber);
+
+		// 마지막 index 값이 제일 최신 데이터
+		return bookingList.isEmpty() ? null : bookingList.get(bookingList.size() - 1);
 	}
 }

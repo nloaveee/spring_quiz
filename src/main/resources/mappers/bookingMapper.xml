@@ -55,7 +55,7 @@
  
  </insert>
  
- <select id="getBookingBynameAndPhoneNumber"  resultType="com.quiz.booking.domain.Booking">
+ <select id="selectBookingListByNamePhoneNumber" parameterType="map"  resultType="com.quiz.booking.domain.Booking">
  	 SELECT 
 		 `id`
 		,`name`
@@ -70,7 +70,7 @@
 		`booking`
 	WHERE
 		`name`= #{name}
-	AND
+		AND
 		`phoneNumber` = #{phoneNumber}
  
  </select>
