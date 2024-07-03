@@ -33,4 +33,24 @@ public class Lesson07Quiz01RestController {
 
 		return companyBO.addCompany("버블팡", "여신 금융업", "대기업", 6834);
 	}
+
+	// update
+	// http://localhost:8080/lesson07/quiz01/update
+	@GetMapping("/update")
+	public CompanyEntity update() {
+		// id = 10
+
+		return companyBO.updateCompanyById(10, "중소기업", 34);
+	}
+
+	// delete
+	// http://localhost:8080/lesson07/quiz01/delete
+	@GetMapping("/delete")
+	public String delete() {
+		// id = 10
+		companyBO.deleteCompanyById(10);
+
+		return "삭제 성공";
+	}
+
 }
