@@ -43,7 +43,7 @@ public class Lesson07Quiz02RestController {
 	}
 
 	// 4. 복합 조건 조회(/lesson07/quiz02/4)
-	// 정규직 이거나 연봉이 9000이상인 공고 조회
+	// 정규직 이거나(또는) 연봉이 9000이상인 공고 조회
 	@GetMapping("/4")
 	public List<RecruitEntity> select4() {
 		return recruitRepository.findByTypeOrSalaryGreaterThanEqual("정규직", 9000);
@@ -61,6 +61,12 @@ public class Lesson07Quiz02RestController {
 	@GetMapping("/6")
 	public List<RecruitEntity> select6() {
 		return recruitRepository.findByRegionAndSalaryBetween("성남시 분당구", 7000, 8500);
+	}
+
+	// 7. Native query (/lesson07/quiz02/7)
+	@GetMapping("/7")
+	public List<RecruitEntity> select7() {
+		return recruitRepository.findByDeadlineAndsalaryAndType("2026-04-10", 8100, "정규직");
 	}
 
 }
